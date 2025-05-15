@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "db65fdde-46b3-41c5-bae4-bddeed2f5c3e",
+		"name": "library-manaagement",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6770733"
+	},
+	"item": [
+		{
+			"name": "Add New Book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"The Harry Potter\",\r\n    \"isbnNo\" : \"IBNO-125535\",\r\n    \"author\" : \"Chris Gayle\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/lib-management/book/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"lib-management",
+						"book",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add New Borrower",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"test@yopmail.com\",\r\n    \"name\" : \"Testing\"  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/lib-management/borrower/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"lib-management",
+						"borrower",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/lib-management/book/?pageNum=0&pageSize=100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"lib-management",
+						"book",
+						""
+					],
+					"query": [
+						{
+							"key": "pageNum",
+							"value": "0"
+						},
+						{
+							"key": "pageSize",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrow Book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"test@yopmail.com\",\r\n    \"name\" : \"Testing\"  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/lib-management/book/borrow?bookId=50&borrowerId=50",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"lib-management",
+						"book",
+						"borrow"
+					],
+					"query": [
+						{
+							"key": "bookId",
+							"value": "50"
+						},
+						{
+							"key": "borrowerId",
+							"value": "50"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrow Book Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"test@yopmail.com\",\r\n    \"name\" : \"Testing\"  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/lib-management/book/return?bookId=50&borrowerId=50",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"lib-management",
+						"book",
+						"return"
+					],
+					"query": [
+						{
+							"key": "bookId",
+							"value": "50"
+						},
+						{
+							"key": "borrowerId",
+							"value": "50"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
