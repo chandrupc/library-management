@@ -1,11 +1,8 @@
 package com.library.management.service.impl;
 
 import com.library.management.dto.BookDTO;
-import com.library.management.enums.LedgerStatus;
 import com.library.management.exception.ConflictException;
 import com.library.management.model.Book;
-import com.library.management.model.Borrower;
-import com.library.management.model.Ledger;
 import com.library.management.repository.BookRepository;
 import com.library.management.repository.BorrowerRepository;
 import com.library.management.repository.LedgerRepository;
