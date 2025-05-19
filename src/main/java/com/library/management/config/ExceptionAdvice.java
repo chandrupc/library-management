@@ -17,28 +17,55 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * ExceptionAdvice - Controller advice class to handle global exceptions across application*
+ * Global exception handler for the library management system.
+ * <p>
+ * This class centralizes exception handling across all controllers in the application,
+ * providing consistent error responses to clients. It converts various exceptions into
+ * appropriate HTTP responses with structured error details.
+ * </p>
+ * <p>
+ * Using {@link ControllerAdvice}, this class intercepts exceptions thrown from controllers
+ * and transforms them into standardized error responses with relevant HTTP status codes.
+ * </p>
+ *
+ * @author Chandru
+ * @version 1.0
+ * @see ErrorDetailsDTO
+ * @see ConflictException
+ * @since 2025-05-19
  */
 @ControllerAdvice
 public class ExceptionAdvice {
 
     /**
-     * *
+     * Handles {@link ConflictException} which occurs when attempting operations that
+     * would create data conflicts (e.g., adding a book that already exists).
+     * <p>
+     * This handler returns a 409 CONFLICT response with details about the conflict.
+     * </p>
      *
-     * @param ex
-     * @param request
-     * @return
+     * @param ex      The ConflictException that was thrown
+     * @param request The current web request
+     * @return ResponseEntity containing error details and HTTP status 409 CONFLICT
      */
     @ExceptionHandler(ConflictException.class)
-    public ResponseEntity<?> bookExistsExceptionHandler(Exception ex, WebRequest request) {
+    public ResponseEntity<?> handleConflicts(Exception ex, WebRequest request) {
         ErrorDetailsDTO errorDetails = new ErrorDetailsDTO(new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.CONFLICT);
     }
 
     /**
-     * @param ex
-     * @param request
-     * @return
+     * Handles validation failures for request bodies annotated with {@code @Valid}.
+     * <p>
+     * When request validation fails, this handler collects all field-level validation errors
+     * and returns them as a consolidated error response with HTTP status 400 BAD REQUEST.
+     * The response includes a list of all validation error messages to help clients correct
+     * their request.
+     * </p>
+     *
+     * @param ex      The MethodArgumentNotValidException containing validation errors
+     * @param request The current web request
+     * @return ResponseEntity containing all validation error messages and HTTP status 400 BAD REQUEST
      */
     @ResponseBody
     @ExceptionHandler(MethodArgumentNotValidException.class)

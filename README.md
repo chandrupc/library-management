@@ -45,6 +45,7 @@ Represents book data for API requests and responses:
 - `title`: Book title (mandatory, 2-255 characters)
 - `author`: Author's name (mandatory, 2-50 characters)
 - `isbnNo`: International Standard Book Number (mandatory, 3-50 characters)
+- `version`: Version of the book
 
 #### BorrowerDTO
 

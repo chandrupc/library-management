@@ -138,7 +138,7 @@
 			"response": []
 		},
 		{
-			"name": "Borrow Book Copy",
+			"name": "Return book",
 			"request": {
 				"method": "POST",
 				"header": [],

@@ -11,6 +11,20 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * Implementation of {@link BorrowerService} for handling operations related to borrowers.
+ * <p>
+ * This service provides logic for adding new borrowers to the system, ensuring no duplicates exist.
+ * </p>
+ *
+ * <p>
+ * Uses {@link ModelMapper} to convert between DTOs and entities.
+ * </p>
+ *
+ * @author Chandru
+ * @version 1.0
+ * @since 2025-05-19
+ */
 @Service
 public class BorrowerServiceImpl implements BorrowerService {
 
@@ -21,12 +35,17 @@ public class BorrowerServiceImpl implements BorrowerService {
     private ModelMapper modelMapper;
 
     /**
-     * @param borrowerDTO
-     * @throws ConflictException
+     * Adds a new borrower to the system if a borrower with the same name and email does not already exist.
+     *
+     * @param borrowerDTO the {@link BorrowerDTO} containing borrower details
+     * @throws ConflictException if a borrower with the same name and email already exists
      */
     @Override
     public void addBorrower(BorrowerDTO borrowerDTO) throws ConflictException {
-        Optional<Borrower> exists = borrowerRepository.findByNameAndEmail(borrowerDTO.getName(), borrowerDTO.getEmail());
+        Optional<Borrower> exists = borrowerRepository.findByNameAndEmail(
+                borrowerDTO.getName(),
+                borrowerDTO.getEmail()
+        );
         if (exists.isPresent()) {
             throw new ConflictException("Borrower Already Exists");
         }

@@ -10,10 +10,11 @@ create table if not exists book (
     isbn_no varchar(50),
     title varchar(255),
     author varchar(50),
+    version int,
     created_date timestamp(6),
     updated_date timestamp(6),
     constraint book_id_p primary key (id),
-    constraint book_isbn_title_author_u unique (isbn_no, title, author)
+    constraint book_isbn_title_author_u unique (isbn_no, title, author, version)
 );
 
 create table if not exists borrower (
