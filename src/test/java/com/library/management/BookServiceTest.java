@@ -129,7 +129,7 @@ public class BookServiceTest {
                 .thenReturn(List.of(mismatchedBook));
 
         ConflictException ex = assertThrows(ConflictException.class, () -> bookService.addBook(bookDTO));
-        assertEquals("Book with same ISBN but different title or author exists", ex.getMessage());
+        assertEquals("Book with same ISBN must have same title and author", ex.getMessage());
 
         verify(bookRepository, times(1)).findByIsbnNo(bookDTO.getIsbnNo());
         verify(bookRepository, never()).save(any(Book.class));
