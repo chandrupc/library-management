@@ -37,10 +37,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: springboot-app-jar
-          path: target/*.jar
-
-      - name: Submit dependency graph
-        if: github.repository_owner == 'chandrupc'
-        uses: advanced-security/maven-dependency-submission-action@v4
-        with:
-          maven-command: mvn
+          path: target/*.jar   
